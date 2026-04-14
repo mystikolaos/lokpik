@@ -1,0 +1,38 @@
+# Tests the compilation of LaTeX files to PDFs.
+#
+# Latest revision: 2025-04-14
+#
+# Created and unlicensed by Mikołaj Bartnicki <mikolaj@bartnicki.org>;
+# please read UNLICENSE file for details.
+
+name: Test LaTeX to PDF compilation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  deklaracja-zwyczajny:
+    uses: mystikolaos/actions/.github/workflows/check-shell-command.yml@main
+    with:
+      command: cd ./documents/deklaracja && pdflatex deklaracja-zwyczajny.tex
+      packages: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+      expected-file: ./documents/deklaracja/deklaracja-zwyczajny.pdf
+  deklaracja-wspierajacy:
+    uses: mystikolaos/actions/.github/workflows/check-shell-command.yml@main
+    with:
+      command: cd ./documents/deklaracja && pdflatex deklaracja-wspierajacy.tex
+      packages: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+      expected-file: ./documents/deklaracja/deklaracja-wspierajacy.pdf
+  statut:
+    uses: mystikolaos/actions/.github/workflows/check-shell-command.yml@main
+    with:
+      command: cd ./documents/statut && pdflatex statut.tex
+      packages: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+      expected-file: ./documents/statut/statut.pdf
+  zaswiadczenie:
+    uses: mystikolaos/actions/.github/workflows/check-shell-command.yml@main
+    with:
+      command: cd ./documents/zaswiadczenie && pdflatex zaswiadczenie.tex
+      packages: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+      expected-file: ./documents/zaswiadczenie/zaswiadczenie.pdf
